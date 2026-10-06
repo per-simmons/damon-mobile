@@ -1,0 +1,59 @@
+name: Damon
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    DEVELOPMENT_TEAM: ${DEVELOPMENT_TEAM}
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  Damon:
+    type: application
+    platform: iOS
+    sources: [Damon]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BUNDLE_ID}
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1,2"
+    info:
+      path: Damon/Info.plist
+      properties:
+        CFBundleDisplayName: Damon
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleIconName: AppIcon
+        UILaunchScreen:
+          UIColorName: ""
+        ITSAppUsesNonExemptEncryption: false
+        NSMicrophoneUsageDescription: Damon uses the microphone so you can dictate messages to your agents.
+        NSSpeechRecognitionUsageDescription: Damon turns your speech into text for messages to your agents. Recognition runs on the iPhone when possible.
+        UIApplicationSupportsIndirectInputEvents: true
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+  DamonUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [DamonUITests]
+    dependencies:
+      - target: Damon
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BUNDLE_ID}.uitests
+        TEST_TARGET_NAME: Damon
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Damon:
+    build:
+      targets:
+        Damon: all
+    test:
+      targets: [DamonUITests]

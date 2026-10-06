@@ -1,0 +1,8 @@
+logs/
+state/
+node_modules/
+ios/build/
+ios/Damon.xcodeproj/
+.DS_Store
+*.mov
+*.mp4
